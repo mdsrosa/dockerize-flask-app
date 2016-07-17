@@ -1,0 +1,10 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: gunicorn app:app -w 2 -b :8000
+    volumes:
+      - ./app:/code/app
+    ports:
+      - "8000:8000"
+
