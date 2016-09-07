@@ -1,9 +1,0 @@
-version: '2'
-services:
-  redis:
-    build: .
-    command: redis-server /usr/local/etc/redis/slave.conf
-    ports:
-      - "6380:6380"
-    volumes:
-      - /usr/local/var/db/redis:/data

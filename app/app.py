@@ -3,7 +3,7 @@ from redis import Redis
 from redis_session import RedisSessionInterface
 
 
-redis = Redis(host='192.168.99.102', port=6379, db=0, password='abc123')
+redis = Redis(host='192.168.99.100', port=6379, db=0, password='abc123')
 
 
 app = Flask(__name__)

@@ -2,9 +2,43 @@ version: '2'
 services:
   web:
     build: .
-    command: gunicorn app:app -w 2 -b :8000
+    command: gunicorn app:app -w 2 -b :8001
     volumes:
       - ./app:/code/app
     ports:
-      - "8000:8000"
-
+      - "8001:8001"
+  web_2:
+    build: .
+    command: gunicorn app:app -w 2 -b :8002
+    volumes:
+      - ./app:/code/app
+    ports:
+      - "8002:8002"
+  redis_master:
+    build: ./redis-master
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - "6379:6379"
+    volumes:
+      - /usr/local/var/db/redis:/data
+  redis_slave:
+    build: ./redis-slave
+    command: redis-server /usr/local/etc/redis/slave.conf
+    ports:
+      - "6380:6380"
+    volumes:
+      - /usr/local/var/db/redis:/data
+  redis_slave_2:
+    build: ./redis-slave2
+    command: redis-server /usr/local/etc/redis/slave.conf
+    ports:
+      - "6381:6381"
+    volumes:
+      - /usr/local/var/db/redis:/data
+  redis_slave_3:
+    build: ./redis-slave3
+    command: redis-server /usr/local/etc/redis/slave.conf
+    ports:
+      - "6382:6382"
+    volumes:
+      - /usr/local/var/db/redis:/data
